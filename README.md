@@ -18,12 +18,9 @@ A beautiful, responsive art gallery showcasing stunning artwork with modern web 
 ## 🌐 Live Links 
  
 - **Main Gallery**: https://artisticminds.github.io/ 
-- **Admin Portal**: https://artisticminds.github.io/admin.html 
- 
-## 🔐 Admin Access
 
-- **Email**: admin@gallery.com
-- **Password**: Set securely during first login (prompted)
+ 
+
  
 ## 📱 Social Media 
  
