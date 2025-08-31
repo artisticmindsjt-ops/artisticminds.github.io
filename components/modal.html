@@ -1,0 +1,63 @@
+<!-- Art Modal Component for ArtisticMinds Gallery -->
+<div class="modal" id="artModal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <div class="art-image-container">
+                    <img id="modalImage" src="" alt="" class="modal-image">
+                </div>
+            </div>
+            <div class="modal-info">
+                <h2 id="modalTitle"></h2>
+                <p class="artist-name">by <span id="modalArtist"></span></p>
+                
+                <div class="modal-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Price:</span>
+                        <span class="detail-value" id="modalPrice"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Dimensions:</span>
+                        <span class="detail-value" id="modalDimensions"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Medium:</span>
+                        <span class="detail-value" id="modalMedium"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Category:</span>
+                        <span class="detail-value" id="modalCategory"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Theme:</span>
+                        <span class="detail-value" id="modalTheme"></span>
+                    </div>
+                </div>
+                
+                <div class="modal-description">
+                    <h3>Description</h3>
+                    <p id="modalDescription"></p>
+                </div>
+                
+                <div class="modal-tags" id="modalTags">
+                    <!-- Tags will be populated here -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-actions">
+            <button class="like-btn" id="modalLikeBtn">
+                <span class="heart">❤️</span>
+                <span id="modalLikeCount" class="like-count">0</span>
+                Like
+            </button>
+            <button class="interest-btn" id="modalInterestBtn">
+                <span class="interest-icon">💌</span>
+                <span id="modalInterestCount" class="interest-count">0</span>
+                Show Interest
+            </button>
+        </div>
+    </div>
+</div>
+

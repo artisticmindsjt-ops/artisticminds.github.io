@@ -1,0 +1,70 @@
+<!-- Filters Section Component for ArtisticMinds Gallery -->
+<section class="filters-section">
+    <div class="filters-container">
+        <div class="filter-group">
+            <label for="categoryFilter">Category:</label>
+            <select id="categoryFilter" class="filter-select">
+                <option value="all">All Categories</option>
+                <option value="Abstract">Abstract</option>
+                <option value="Landscape">Landscape</option>
+                <option value="Portrait">Portrait</option>
+                <option value="Still Life">Still Life</option>
+                <option value="Digital">Digital Art</option>
+                <option value="Photography">Photography</option>
+                <option value="Sculpture">Sculpture</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="themeFilter">Theme:</label>
+            <select id="themeFilter" class="filter-select">
+                <option value="all">All Themes</option>
+                <option value="Nature">Nature</option>
+                <option value="Urban">Urban</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Minimalist">Minimalist</option>
+                <option value="Colorful">Colorful</option>
+                <option value="Monochrome">Monochrome</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="priceFilter">Price Range:</label>
+            <select id="priceFilter" class="filter-select">
+                <option value="all">All Prices</option>
+                <option value="0-100">$0 - $100</option>
+                <option value="100-500">$100 - $500</option>
+                <option value="500-1000">$500 - $1,000</option>
+                <option value="1000-5000">$1,000 - $5,000</option>
+                <option value="5000+">$5,000+</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="sortFilter">Sort by:</label>
+            <select id="sortFilter" class="filter-select">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="popular">Most Popular</option>
+                <option value="alphabetical">Alphabetical</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label class="checkbox-wrapper">
+                <input type="checkbox" id="newArrivalsFilter">
+                <span class="checkmark"></span>
+                New Arrivals Only
+            </label>
+        </div>
+
+        <button id="clearFilters" class="btn btn-outline">Clear Filters</button>
+    </div>
+
+    <div class="gallery-stats">
+        <span id="resultsCount">Loading artworks...</span>
+    </div>
+</section>
+

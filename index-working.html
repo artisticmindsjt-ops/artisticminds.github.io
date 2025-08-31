@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtisticMinds by JT - Art Gallery</title>
+    
+    <!-- Combined CSS - No imports needed -->
+    <link rel="stylesheet" href="css/combined.css">
+    
+    <!-- Original working styles as fallback -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">ArtisticMinds by JT</h1>
+            <nav class="nav">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Collections</a>
+                <a href="#" class="nav-link">About</a>
+            </nav>
+            <div class="user-actions">
+                <!-- Clean visitor-only interface -->
+                <div class="header-social-links">
+                    <a href="https://instagram.com/artistic.minds.jt" target="_blank" rel="noopener noreferrer" class="header-social-link instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.40s-.644-1.44-1.439-1.40z"/>
+                        </svg>
+                        @artistic.minds.jt
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <p class="hero-subtitle">Explore our curated collection of stunning artwork</p>
+            </section>
+
+            <!-- Filters Section -->
+            <section class="filters-section">
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="categoryFilter">Category:</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="Abstract">Abstract</option>
+                            <option value="Landscape">Landscape</option>
+                            <option value="Portrait">Portrait</option>
+                            <option value="Still Life">Still Life</option>
+                            <option value="Digital">Digital Art</option>
+                            <option value="Photography">Photography</option>
+                            <option value="Sculpture">Sculpture</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="themeFilter">Theme:</label>
+                        <select id="themeFilter" class="filter-select">
+                            <option value="all">All Themes</option>
+                            <option value="Nature">Nature</option>
+                            <option value="Urban">Urban</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Minimalist">Minimalist</option>
+                            <option value="Colorful">Colorful</option>
+                            <option value="Monochrome">Monochrome</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="priceFilter">Price Range:</label>
+                        <select id="priceFilter" class="filter-select">
+                            <option value="all">All Prices</option>
+                            <option value="0-100">$0 - $100</option>
+                            <option value="100-500">$100 - $500</option>
+                            <option value="500-1000">$500 - $1,000</option>
+                            <option value="1000-5000">$1,000 - $5,000</option>
+                            <option value="5000+">$5,000+</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="sortFilter">Sort by:</label>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="popular">Most Popular</option>
+                            <option value="alphabetical">Alphabetical</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="newArrivalsFilter">
+                            <span class="checkmark"></span>
+                            New Arrivals Only
+                        </label>
+                    </div>
+
+                    <button id="clearFilters" class="btn btn-outline">Clear Filters</button>
+                </div>
+
+                <div class="gallery-stats">
+                    <span id="resultsCount">Loading artworks...</span>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section class="gallery">
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Art items will be dynamically loaded here -->
+                </div>
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Loading more artworks...</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Art Modal -->
+    <div class="modal" id="artModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <div class="art-image-container">
+                        <img id="modalImage" src="" alt="" class="modal-image">
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <p class="artist-name">by <span id="modalArtist"></span></p>
+                    
+                    <div class="modal-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Price:</span>
+                            <span class="detail-value" id="modalPrice"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Dimensions:</span>
+                            <span class="detail-value" id="modalDimensions"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Medium:</span>
+                            <span class="detail-value" id="modalMedium"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Category:</span>
+                            <span class="detail-value" id="modalCategory"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Theme:</span>
+                            <span class="detail-value" id="modalTheme"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-description">
+                        <h3>Description</h3>
+                        <p id="modalDescription"></p>
+                    </div>
+                    
+                    <div class="modal-tags" id="modalTags">
+                        <!-- Tags will be populated here -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="like-btn" id="modalLikeBtn">
+                    <span class="heart">❤️</span>
+                    <span id="modalLikeCount" class="like-count">0</span>
+                    Like
+                </button>
+                <button class="interest-btn" id="modalInterestBtn">
+                    <span class="interest-icon">💌</span>
+                    <span id="modalInterestCount" class="interest-count">0</span>
+                    Show Interest
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3 class="footer-logo">ArtisticMinds by JT</h3>
+                    <p class="footer-tagline">Discover Beautiful Art</p>
+                </div>
+                <div class="footer-center">
+                    <p class="copyright">© 2025 ArtisticMinds by JT. All rights reserved.</p>
+                </div>
+                <div class="footer-right">
+                    <div class="social-links">
+                        <a href="https://instagram.com/artistic.minds.jt" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.40s-.644-1.44-1.439-1.40z"/>
+                            </svg>
+                            @artistic.minds.jt
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Working JavaScript from original script.js -->
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtisticMinds by JT - Art Gallery</title>
+    
+    <!-- Modular CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Component -->
+    <div id="header-component"></div>
+
+    <main class="main">
+        <div class="container">
+            <!-- Hero Component -->
+            <div id="hero-component"></div>
+
+            <!-- Filters Component -->
+            <div id="filters-component"></div>
+
+            <!-- Gallery Section -->
+            <section class="gallery">
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Art items will be dynamically loaded here -->
+                </div>
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Loading more artworks...</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal Component -->
+    <div id="modal-component"></div>
+
+    <!-- Footer Component -->
+    <div id="footer-component"></div>
+
+    <!-- Modular JavaScript -->
+    <script type="module">
+        // Import modules
+        import { CONSTANTS, BRANDING } from './js/constants.js';
+        import { ArtworkManager } from './js/artwork.js';
+        import { Gallery } from './js/gallery.js';
+        
+        // Component loader utility
+        async function loadComponent(elementId, componentPath) {
+            try {
+                const response = await fetch(componentPath);
+                const html = await response.text();
+                document.getElementById(elementId).innerHTML = html;
+            } catch (error) {
+                console.error(`Error loading component ${componentPath}:`, error);
+            }
+        }
+        
+        // Load all components
+        async function loadAllComponents() {
+            await Promise.all([
+                loadComponent('header-component', 'components/header.html'),
+                loadComponent('hero-component', 'components/hero.html'),
+                loadComponent('filters-component', 'components/filters.html'),
+                loadComponent('modal-component', 'components/modal.html'),
+                loadComponent('footer-component', 'components/footer.html')
+            ]);
+        }
+        
+        // Initialize application
+        async function initApp() {
+            // Load components first
+            await loadAllComponents();
+            
+            // Initialize artwork manager and gallery
+            const artworkManager = new ArtworkManager();
+            const gallery = new Gallery(artworkManager);
+            
+            // Set up filter event listeners
+            setupFilters(gallery);
+            
+            console.log('🎨 ArtisticMinds Gallery initialized with modular architecture!');
+        }
+        
+        // Set up filter functionality
+        function setupFilters(gallery) {
+            const categoryFilter = document.getElementById('categoryFilter');
+            const themeFilter = document.getElementById('themeFilter');
+            const priceFilter = document.getElementById('priceFilter');
+            const sortFilter = document.getElementById('sortFilter');
+            const newArrivalsFilter = document.getElementById('newArrivalsFilter');
+            const clearFiltersBtn = document.getElementById('clearFilters');
+            
+            // Filter change handlers
+            const handleFilterChange = () => {
+                const filters = {
+                    category: categoryFilter.value,
+                    theme: themeFilter.value,
+                    priceRange: priceFilter.value,
+                    sortBy: sortFilter.value,
+                    newOnly: newArrivalsFilter.checked
+                };
+                gallery.applyFilters(filters);
+            };
+            
+            // Add event listeners
+            categoryFilter?.addEventListener('change', handleFilterChange);
+            themeFilter?.addEventListener('change', handleFilterChange);
+            priceFilter?.addEventListener('change', handleFilterChange);
+            sortFilter?.addEventListener('change', handleFilterChange);
+            newArrivalsFilter?.addEventListener('change', handleFilterChange);
+            
+            // Clear filters
+            clearFiltersBtn?.addEventListener('click', () => {
+                categoryFilter.value = 'all';
+                themeFilter.value = 'all';
+                priceFilter.value = 'all';
+                sortFilter.value = 'newest';
+                newArrivalsFilter.checked = false;
+                gallery.clearFilters();
+            });
+        }
+        
+        // Start the application when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
+

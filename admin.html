@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ArtisticMinds by JT</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        /* Admin-specific styles */
+        .admin-body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .admin-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .admin-header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .admin-header h1 {
+            color: white;
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .admin-header .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 5px 0 0 0;
+            font-size: 1.1rem;
+        }
+        
+        .admin-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .admin-user-info {
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .admin-user-info .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .admin-logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .admin-main-content {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Login form styles */
+        .admin-login-container {
+            display: flex;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .admin-login-card {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            margin: auto;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+        
+        .admin-login-card h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .admin-login-card .subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        .admin-login-form .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .admin-login-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .admin-login-form input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .admin-login-form input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .admin-login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .admin-login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .admin-login-error {
+            background: #ff4757;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .back-to-site {
+            margin-top: 30px;
+        }
+        
+        .back-to-site a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .back-to-site a:hover {
+            color: #764ba2;
+        }
+        
+        /* Hide elements that should only show when logged in */
+        .admin-dashboard {
+            display: none;
+        }
+        
+        .admin-login {
+            display: block;
+        }
+        
+        /* Show dashboard when logged in */
+        body.admin-logged-in .admin-dashboard {
+            display: block;
+        }
+        
+        body.admin-logged-in .admin-login {
+            display: none;
+        }
+    </style>
+</head>
+<body class="admin-body">
+    <!-- Admin Login Section -->
+    <div class="admin-login" id="adminLogin">
+        <div class="admin-login-container">
+            <div class="admin-login-card">
+                <h1>🎨 Admin Portal</h1>
+                <p class="subtitle">Secure access to gallery management</p>
+                
+                <form class="admin-login-form" id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminEmail">Email Address</label>
+                        <input type="email" id="adminEmail" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" name="password" required>
+                    </div>
+                    
+                    <button type="submit" class="admin-login-btn">
+                        🔐 Access Dashboard
+                    </button>
+                    
+                    <div class="admin-login-error" id="adminLoginError">
+                        Invalid credentials. Please try again.
+                    </div>
+                </form>
+                
+                <div class="back-to-site">
+                    <a href="index.html">← Back to Art Gallery</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Section -->
+    <div class="admin-dashboard" id="adminDashboard">
+        <div class="admin-container">
+            <div class="admin-header">
+                                 <h1>🎨 ArtisticMinds by JT - Admin Dashboard</h1>
+                <p class="subtitle">Manage your art gallery with powerful tools</p>
+                
+                <div class="admin-actions">
+                    <div class="admin-user-info">
+                        <div class="user-avatar" id="adminAvatar">A</div>
+                        <div>
+                            <div><strong id="adminUserName">Admin User</strong></div>
+                            <div style="font-size: 0.9rem; opacity: 0.8;" id="adminUserEmail">admin@gallery.com</div>
+                        </div>
+                    </div>
+                    <button class="admin-logout-btn" id="adminLogoutBtn">
+                        🚪 Logout
+                    </button>
+                </div>
+            </div>
+            
+            <div class="admin-main-content">
+                <!-- Admin Dashboard Content -->
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="switchTab('upload')">📤 Upload Artwork</button>
+                    <button class="tab-btn" onclick="switchTab('manage')">📋 Manage Artworks</button>
+                    <button class="tab-btn" onclick="switchTab('analytics')">📊 Analytics</button>
+                    <button class="tab-btn" onclick="switchTab('users')">👥 User Management</button>
+                </div>
+
+                <!-- Upload Artwork Tab -->
+                <div class="tab-content active" id="upload-tab">
+                    <div class="upload-container">
+                        <h2>📤 Upload New Artwork</h2>
+                        <div class="upload-form-section">
+                            <form id="artworkUploadForm" class="upload-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="artworkTitle">Artwork Title *</label>
+                                        <input type="text" id="artworkTitle" name="title" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="artworkArtist">Artist Name *</label>
+                                        <input type="text" id="artworkArtist" name="artist" list="artistSuggestions" required>
+                                        <datalist id="artistSuggestions"></datalist>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="artworkCategory">Category *</label>
+                                        <select id="artworkCategory" name="category" required>
+                                            <option value="">Select Category</option>
+                                            <option value="painting">Painting</option>
+                                            <option value="sculpture">Sculpture</option>
+                                            <option value="photography">Photography</option>
+                                            <option value="digital">Digital Art</option>
+                                            <option value="mixed">Mixed Media</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="artworkTheme">Theme</label>
+                                        <select id="artworkTheme" name="theme">
+                                            <option value="">Select Theme</option>
+                                            <option value="abstract">Abstract</option>
+                                            <option value="landscape">Landscape</option>
+                                            <option value="portrait">Portrait</option>
+                                            <option value="nature">Nature</option>
+                                            <option value="urban">Urban</option>
+                                            <option value="fantasy">Fantasy</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="artworkPrice">Price (USD) *</label>
+                                        <div class="price-input-group">
+                                            <span class="currency-symbol">$</span>
+                                            <input type="number" id="artworkPrice" name="price" min="0" step="0.01" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="artworkMedium">Medium</label>
+                                        <input type="text" id="artworkMedium" name="medium" placeholder="e.g. Oil on canvas, Digital print">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="artworkWidth">Width (cm)</label>
+                                        <input type="number" id="artworkWidth" name="width" min="1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="artworkHeight">Height (cm)</label>
+                                        <input type="number" id="artworkHeight" name="height" min="1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="artworkDimensions">Dimensions (auto-filled)</label>
+                                        <input type="text" id="artworkDimensions" name="dimensions" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="artworkDescription">Description</label>
+                                    <textarea id="artworkDescription" name="description" rows="4" placeholder="Describe the artwork, inspiration, technique..."></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="artworkTags">Tags</label>
+                                    <div class="tags-input-container">
+                                        <input type="text" id="artworkTags" placeholder="Type tags and press Enter">
+                                        <div class="selected-tags" id="selectedTags"></div>
+                                        <div class="tag-suggestions" id="tagSuggestions"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="artworkImage">Artwork Image *</label>
+                                    <input type="file" id="artworkImage" name="image" accept="image/*" required>
+                                    <p class="form-hint">Upload high-quality image (JPEG, PNG, WebP). Max size: 10MB</p>
+                                </div>
+
+                                <div class="form-options">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="isFeatured" name="featured">
+                                        <span class="checkmark"></span>
+                                        Featured Artwork
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="isLimitedEdition" name="limitedEdition">
+                                        <span class="checkmark"></span>
+                                        Limited Edition
+                                    </label>
+                                </div>
+
+                                <div class="image-preview-section">
+                                    <div class="image-preview" id="imagePreview">
+                                        <div class="preview-placeholder">
+                                            <span>📷</span>
+                                            <p>Image preview will appear here</p>
+                                        </div>
+                                    </div>
+                                    <div class="preview-info" id="previewInfo"></div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn-secondary" id="previewBtn">👁️ Preview</button>
+                                    <button type="button" class="btn btn-outline" id="saveAsDraftBtn">💾 Save as Draft</button>
+                                    <button type="submit" class="btn btn-primary">✅ Upload Artwork</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manage Artworks Tab -->
+                <div class="tab-content" id="manage-tab">
+                    <div class="manage-header">
+                        <h2>📋 Manage Artworks</h2>
+                        <div class="manage-controls">
+                            <div class="search-group">
+                                <input type="text" id="manageSearch" placeholder="🔍 Search artworks...">
+                                <button id="clearSearch" class="btn btn-outline">Clear</button>
+                            </div>
+                            <div class="filter-group">
+                                <select id="manageStatus">
+                                    <option value="">All Status</option>
+                                    <option value="available">Available</option>
+                                    <option value="sold">Sold</option>
+                                    <option value="reserved">Reserved</option>
+                                    <option value="draft">Draft</option>
+                                </select>
+                                <select id="manageCategory">
+                                    <option value="">All Categories</option>
+                                    <option value="painting">Painting</option>
+                                    <option value="sculpture">Sculpture</option>
+                                    <option value="photography">Photography</option>
+                                    <option value="digital">Digital Art</option>
+                                    <option value="mixed">Mixed Media</option>
+                                </select>
+                                <select id="manageSort">
+                                    <option value="dateDesc">Newest First</option>
+                                    <option value="dateAsc">Oldest First</option>
+                                    <option value="priceDesc">Price: High to Low</option>
+                                    <option value="priceAsc">Price: Low to High</option>
+                                    <option value="titleAsc">Title: A to Z</option>
+                                    <option value="likesDesc">Most Liked</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="bulk-actions">
+                            <div class="bulk-controls">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="selectAll">
+                                    <span class="checkmark"></span>
+                                    Select All
+                                </label>
+                                <span class="selected-count" id="selectedCount">0 selected</span>
+                            </div>
+                            <div class="bulk-buttons">
+                                <button class="btn btn-danger" id="bulkDelete">🗑️ Delete Selected</button>
+                                <select id="bulkStatus" class="bulk-status-select">
+                                    <option value="">Change Status</option>
+                                    <option value="available">Available</option>
+                                    <option value="sold">Sold</option>
+                                    <option value="reserved">Reserved</option>
+                                    <option value="draft">Draft</option>
+                                </select>
+                                <button class="btn btn-secondary" id="bulkExport">📤 Export Selected</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="artworks-table-container">
+                        <table class="artworks-table" id="artworksTable">
+                            <thead>
+                                <tr>
+                                    <th width="50">Select</th>
+                                    <th width="80">Image</th>
+                                    <th>Title</th>
+                                    <th>Artist</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Likes</th>
+                                    <th>Date</th>
+                                    <th width="120">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="artworksTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination-container" id="paginationContainer">
+                        <!-- Dynamic pagination -->
+                    </div>
+                </div>
+
+                <!-- Analytics Tab -->
+                <div class="tab-content" id="analytics-tab">
+                    <div class="analytics-header">
+                        <h2>📊 Gallery Analytics</h2>
+                        <div class="analytics-controls">
+                            <div class="date-range-selector">
+                                <select id="analyticsRange">
+                                    <option value="7">Last 7 days</option>
+                                    <option value="30" selected>Last 30 days</option>
+                                    <option value="90">Last 3 months</option>
+                                    <option value="365">Last year</option>
+                                </select>
+                            </div>
+                            <div class="analytics-actions">
+                                <button class="btn btn-outline" id="refreshAnalytics">🔄 Refresh</button>
+                                <button class="btn btn-secondary" id="exportReport">📊 Export Report</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-overview">
+                        <div class="stats-grid" id="statsGrid">
+                            <!-- Dynamic stats cards -->
+                        </div>
+                    </div>
+
+                    <div class="analytics-charts">
+                        <div class="chart-container">
+                            <h3>📈 Categories Distribution</h3>
+                            <div class="chart-bars" id="categoryChart">
+                                <!-- Dynamic chart -->
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <h3>💰 Price Ranges</h3>
+                            <div class="price-ranges" id="priceChart">
+                                <!-- Dynamic chart -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-details">
+                        <div class="detail-section">
+                            <h3>🏆 Top Performing Artworks</h3>
+                            <div class="performance-list" id="topPerforming">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <h3>📅 Recent Activity</h3>
+                            <div class="activity-feed" id="recentActivity">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                        <div class="detail-section">
+                            <h3>👨‍🎨 Artist Performance</h3>
+                            <div class="artist-stats" id="artistStats">
+                                <!-- Dynamic content -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analytics-insights">
+                        <h3>💡 Business Insights</h3>
+                        <div class="insights-grid" id="businessInsights">
+                            <!-- Dynamic insights -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Management Tab -->
+                <div class="tab-content" id="users-tab">
+                    <div class="users-header">
+                        <h2>👥 User Management</h2>
+                        <p>Manage visitor accounts and user interactions</p>
+                    </div>
+                    
+                    <div class="users-content">
+                        <div class="users-stats">
+                            <div class="stat-card">
+                                <div class="stat-icon">👥</div>
+                                <div class="stat-content">
+                                    <div class="stat-number" id="totalVisitors">0</div>
+                                    <div class="stat-label">Total Visitors</div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">❤️</div>
+                                <div class="stat-content">
+                                    <div class="stat-number" id="totalLikes">0</div>
+                                    <div class="stat-label">Total Likes</div>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">💌</div>
+                                <div class="stat-content">
+                                    <div class="stat-number" id="totalInterests">0</div>
+                                    <div class="stat-label">Total Interests</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="users-table-section">
+                            <h3>Visitor Activity</h3>
+                            <div class="users-table-container">
+                                <table class="users-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Visitor ID</th>
+                                            <th>First Visit</th>
+                                            <th>Last Activity</th>
+                                            <th>Artworks Liked</th>
+                                            <th>Interests Shown</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="usersTableBody">
+                                        <!-- Dynamic content -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Art Modal (for previewing) -->
+    <div class="modal" id="artModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="" class="modal-image">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle"></h2>
+                    <p class="artist-name">by <span id="modalArtist"></span></p>
+                    <div class="modal-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Price:</span>
+                            <span class="detail-value" id="modalPrice"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Dimensions:</span>
+                            <span class="detail-value" id="modalDimensions"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Medium:</span>
+                            <span class="detail-value" id="modalMedium"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Category:</span>
+                            <span class="detail-value" id="modalCategory"></span>
+                        </div>
+                    </div>
+                    <div class="modal-description">
+                        <p id="modalDescription"></p>
+                    </div>
+                    <div class="modal-tags" id="modalTags"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer admin-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <h3 class="footer-logo">🎨 ArtisticMinds by JT Admin</h3>
+                    <p class="footer-tagline">Gallery Management Portal</p>
+                </div>
+                <div class="footer-center">
+                    <p class="copyright">© 2024 ArtisticMinds by JT. All rights reserved.</p>
+                </div>
+                <div class="footer-right">
+                    <div class="social-links">
+                        <a href="https://instagram.com/artistic.minds.jt" target="_blank" rel="noopener noreferrer" class="social-link instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                            @artistic.minds.jt
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include the admin-specific script -->
+    <script src="admin-script.js"></script>
+
+</body>
+</html>

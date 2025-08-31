@@ -1,0 +1,27 @@
+/* Main CSS file for ArtisticMinds Gallery */
+/* Import all modular CSS files in the correct order */
+
+/* Base styles and variables - must be first */
+@import url('base.css');
+
+/* Layout styles - defines structure */
+@import url('layout.css');
+
+/* Component styles - reusable UI components */
+@import url('components.css');
+
+/* Admin-specific styles */
+@import url('admin.css');
+
+/* Protection and security styles - should be last for specificity */
+@import url('protection.css');
+
+/* 
+File Organization:
+- base.css: CSS reset, variables, typography, utilities
+- layout.css: Page layout, header, footer, grid systems
+- components.css: Reusable UI components (buttons, forms, modals)
+- admin.css: Admin dashboard specific styles
+- protection.css: Image protection and security styles
+*/
+
